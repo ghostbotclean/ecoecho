@@ -1,5 +1,5 @@
 module.exports = function geoScore(location, activity) {
-  const base = { walk: 2, bike: 1.5, drive: 1, flight: 0.5, train: 1.2 }[activity] || 1;
-  const multiplier = location.lat > 50 ? 1.2 : 1; // UK bonus
-  return base * multiplier * (1 + (Math.random() - 0.5) * 0.1); // Slight randomness
+  const base = activity === 'walk' ? 2 : activity === 'bike' ? 1.5 : activity === 'drive' ? 1 : activity === 'flight' ? 0.5 : activity === 'train' ? 1.2 : 1;
+  const multiplier = location && location.lat ? (location.lat > 50 ? 1.2 : 1) : 1; // Default to 1 if location or lat is undefined
+  return base * multiplier;
 };
