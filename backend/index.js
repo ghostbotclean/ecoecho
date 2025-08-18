@@ -1,6 +1,7 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true); // Or false if you prefer the old behavior
 const morgan = require('morgan');
 const cron = require('node-cron');
 const User = require('./models/User');
